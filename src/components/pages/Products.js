@@ -1,64 +1,70 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/modules/productsSlice";
-
+import { Link } from "react-router-dom";
 
 const Products = () => {
-   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.productsSlice);
+  const dispatch = useDispatch();
+  const { product } = useSelector((state) => state.productsSlice);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 className="text-xl font-bold text-gray-900"> All the Products</h2>
 
-
-   return (
-     <div class="bg-white">
-      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 class="text-xl font-bold text-gray-900"> All the Products</h2>
-
-        <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-          {/* Maping on the product This is crad start*/}
-          {products.map((products) => (
-            <div>
-              <div class=" group relative">
-                <div class="relative h-72 w-full overflow-hidden bg-yellow-900 rounded-lg group-hover:opacity-40 ">
+        <div className="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          {/* Maping on the product This is card start*/}
+          {product.map((product) => (
+            <div key={product.id}>
+              <div className=" group relative">
+             
+                <div className="relative h-72 w-full overflow-hidden bg-yellow-900 rounded-lg group-hover:opacity-40 ">
+                <Link to={`product/${product.id}`}>
                   <img
-                    src={products.imageUrl}
+                    src={product.imageUrl}
                     alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls."
-                    class="h-full w-full object-cover object-center"
+                    className="h-full w-full object-cover object-center"
                   />
+                  </Link>
                 </div>
-                <div class="relative mt-4">
-                  <h3 class="text-sm font-medium text-gray-900">
-                   {products.title}
+                
+                <div className="relative mt-4">
+                  <h3 className="text-sm font-medium text-gray-900">
+                  <Link to={`product/${product.id}`}>
+                    <span className=" text-lg"> {product.title}</span>
+                    </Link>
                   </h3>
-                  <p class="mt-1 text-sm text-gray-500">{products.tags}</p>
+                  <p className="mt-1 text-sm text-gray-500">{product.tags}</p>
                 </div>
-               <div>
-                <p>Rating {products.rating}</p>
-               </div>
-                <div class="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
+                <div>
+                  <p>Rating {product.rating}</p>
+                </div>
+                <div className="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
                   <div
                     aria-hidden="true"
-                    class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
-                  <p class="relative text-lg font-semibold text-white">NOK{products.price}</p>
+                    className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
+                  <p className="relative text-lg font-semibold text-white">
+                    NOK{product.price}
+                  </p>
                 </div>
               </div>
-              <div class="mt-6">
-                <a
-                  href="#"
-                  class="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200">
-                  Add to bag<span class="sr-only">, {products.title}</span>
-                </a>
+              <div className="mt-6">
+                <Link to={`product/${product.id}`}>
+                  <div className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200">
+                    Add to bag
+                  </div>
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </div>
     </div>
-   )
-}
+  );
+};
 
 export default Products;

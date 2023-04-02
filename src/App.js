@@ -1,10 +1,10 @@
-import Products from "./components/pages/Products"
+
+import Router from "./routes/Router"
+
 function App() {
-  
   return (
     <>
-    <Products/>
-
+    <Router/>
     </>
   );
 }
