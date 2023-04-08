@@ -41,6 +41,7 @@ const Products = () => {
                   <p className="mt-1 text-sm text-gray-500">{product.tags}</p>
                 </div>
                 <div>
+                   {/* //TODO:  Add an review starts */}
                   <p>Rating {product.rating}</p>
                 </div>
                 <div className="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
@@ -54,8 +55,8 @@ const Products = () => {
               </div>
               <div className="mt-6">
                 <Link to={`product/${product.id}`}>
-                  <div className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200">
-                    Add to bag
+                  <div className="relative flex items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-green-300">
+                    See More
                   </div>
                 </Link>
               </div>
