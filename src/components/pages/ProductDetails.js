@@ -28,7 +28,7 @@ const ProductDetails = () => {
               <div className="flex items-center">
               <Link to="/">
                 <div  className="mr-4 text-sm font-medium text-gray-900 hover:text-lime-400">
-                  Product
+                  Home
                 </div>
                 </Link>
                 <svg
