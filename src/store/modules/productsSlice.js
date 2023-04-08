@@ -5,7 +5,7 @@ const productsSlice = createSlice({
   initialState: {
     product: [],
     productDetails: null,
-    total: 0,
+    isError: false
   },
 
   reducers: {
@@ -36,7 +36,7 @@ export const fetchProducts = () => async (dispatch) => {
 // Calling One Product by ID
 const {SET_SINGLE_PRODUCT} = productsSlice.actions;
 
-export const fetchSingleProduct = (id) => async (dispatch) => {
+export const fetchSingleProductById = (id) => async (dispatch) => {
   try {
    const response = await fetch(`https://api.noroff.dev/api/v1/online-shop/${id}`)
    const productDetailsData = await response.json();
@@ -44,6 +44,6 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
 
 
   } catch(e) {
-   console.log("Error sad :(",e);
+   console.log("Error sad :(", e.message);
   }
 };
