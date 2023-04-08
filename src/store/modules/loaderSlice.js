@@ -4,7 +4,18 @@ const loaderSlice = createSlice({
 name: ' loader',
 initialState : {
    isLoading: false
+},
+reducers: {
+   SET_LOADER: (state,action)=>{
+      state.isLoading = action.payload;
+   }
 }
 })
 
-export default loaderSlice.reducer;
+const {actions, reducer} = loaderSlice;
+export default reducer;
+const {SET_LOADER} = actions;
+
+export const setLoadingState = (loadingStatus) => (dispatch)=> {
+   dispatch(SET_LOADER(loaderSlice))
+}
