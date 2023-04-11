@@ -6,16 +6,21 @@ initialState : {
    isLoading: false
 },
 reducers: {
+   
    SET_LOADER: (state,action)=>{
       state.isLoading = action.payload;
    }
 }
 })
 
-const {actions, reducer} = loaderSlice;
-export default reducer;
-const {SET_LOADER} = actions;
+
+
+export default loaderSlice.reducer;
+// const {actions, reducer} = loaderSlice;
+// export default reducer;
+
+const {SET_LOADER} = loaderSlice.actions;
 
 export const setLoadingState = (loadingStatus) => (dispatch)=> {
-   dispatch(SET_LOADER(loaderSlice))
+   dispatch(SET_LOADER(loadingStatus))
 }

@@ -1,20 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-import Products from "../components/pages/Products";
+import HomePage from "../components/pages/HomePage";
 import ProductDetails from "../components/pages/ProductDetails"
 
+
 function Router(){
+  
    return(
       <>
-     
       <Routes>
-         <Route path="/" element={<Products/>}/>
-         <Route path="/products" element={<Products/>}/>
+         <Route path="/" element={<HomePage/>}/>
+         <Route path="/products" element={<HomePage/>}/>
          <Route path="/product/:id" element={<ProductDetails/>} />
    
       </Routes>
-     
-
-
       </>
    )
 
