@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/modules/productsSlice";
 import { Link } from "react-router-dom";
 
-const Products = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productsSlice);
 
@@ -68,4 +68,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default HomePage;

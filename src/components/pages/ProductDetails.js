@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProductById } from "../../store/modules/productsSlice";
+import { addSingelProductToCart } from "../../store/modules/cartSlice";
+
 
 const ProductDetails = () => {
   let { id } = useParams();
@@ -115,14 +117,14 @@ const ProductDetails = () => {
                 
               </div>
 
-              <form>
+              
                 <button
                   type="submit"
-                  className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-3 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-3 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  onClick={()=> dispatch(addSingelProductToCart(productDetails))}>
                   Add to cart
                 </button>
-              </form>
-
+            
              {/* //TODO:  Add an review starts */}
               <div className="mt-8 border-t border-gray-200 pt-8">
                 <h2 className="text-sm font-medium text-gray-900">
@@ -135,7 +137,6 @@ const ProductDetails = () => {
         </div>
       </div>
     </div> }
-    
     </>
   );
 };
