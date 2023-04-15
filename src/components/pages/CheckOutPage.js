@@ -1,13 +1,18 @@
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {removeIdFromCart} from "../../store/modules/cartSlice";
+
 
 const CheckOutPage = () => {
+  const { numberOfProductsInCart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const { productsInCart } = useSelector((state) => state.cart);
   console.log(productsInCart);
 
   return (
     <div className="flex min-h-full items-stretch justify-center text-center sm:items-center sm:px-6 lg:px-8">
       <div className="flex w-full max-w-3xl transhtmlForm text-left text-base transition sm:my-8">
-        <from className="relative flex w-full flex-col overflow-hidden bg-white pb-8 pt-6 sm:rounded-lg sm:pb-6 lg:py-8">
+        <div className="relative flex w-full flex-col overflow-hidden bg-white pb-8 pt-6 sm:rounded-lg sm:pb-6 lg:py-8">
           <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
             <h2 className="text-lg font-medium text-gray-900">Shopping Cart</h2>
           </div>
@@ -15,11 +20,12 @@ const CheckOutPage = () => {
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
             </h2>
-            <ul
+            <div 
               role="list"
               className="divide-y divide-gray-200 px-4 sm:px-6 lg:px-8">
               {productsInCart.map((product) => (
-                <li className="flex py-8 text-sm sm:items-center">
+                <li key={product.id}
+                className="flex py-8 text-sm sm:items-center">
                   <img
                     src={product.imageUrl}
                     alt={product.tags}
@@ -34,10 +40,11 @@ const CheckOutPage = () => {
                     </div>
                     <p className="row-span-3 row-end-3 font-medium text-gray-900 sm:order-1 sm:ml-6 sm:w-1/3 sm:flex-none sm:text-right">
                       NOK {product.price}
-                  
                     </p>
                     <div className="flex items-center sm:block sm:flex-none sm:text-center">
                       <button
+
+                      onClick={()=> dispatch(removeIdFromCart(product.id)) }
                         type="button"
                         className="ml-2 font-medium text-red-600 hover:text-indigo-500 sm:ml-0 sm:mt-2">
                         <span>Remove</span>
@@ -46,7 +53,7 @@ const CheckOutPage = () => {
                   </div>
                 </li>
               ))}
-            </ul>
+            </div>
           </section>
           <section
             aria-labelledby="summary-heading"
@@ -59,7 +66,7 @@ const CheckOutPage = () => {
                 <dl className="-my-4 divide-y divide-gray-200 text-sm">
                   <div className="flex items-center justify-between py-4">
                     <dt className="text-gray-600">Orders</dt>
-                    <dd className="font-medium text-gray-900">4</dd>
+                    <dd className="font-medium text-gray-900">{numberOfProductsInCart}</dd>
                   </div>
                   <div className="flex items-center justify-between py-4">
                     <dt className="text-base font-medium text-gray-900">
@@ -80,7 +87,7 @@ const CheckOutPage = () => {
               Continue to Payment
             </button>
           </div>
-        </from>
+        </div>
       </div>
     </div>
   );
