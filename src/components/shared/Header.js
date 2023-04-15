@@ -11,10 +11,12 @@ const Header = () => {
         <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
           <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-green-400 lg:border-opacity-25">
             <div className="flex items-center px-2 lg:px-0">
-              <div className="flex-shrink-0 text-3xl text-white">
+              <NavLink to="/">
+              <div className="flex-shrink-0 text-3xl rounded-md p-2 text-white hover:bg-green-500">
                 <ion-icon name="balloon-outline"></ion-icon>
                 Flopsy
               </div>
+              </NavLink>
               <div className="hidden lg:ml-10 lg:block">
                 <div className="flex space-x-4">
                   <NavLink
@@ -61,11 +63,14 @@ const Header = () => {
                 className="inline-flex items-center justify-center rounded-md bg-green-600 p-2 text-3xl text-green-200 hover:bg-green-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-600"
                 aria-controls="mobile-menu"
                 aria-expanded="false">
-                <span className="sr-only">Open main menu</span>
+                <span className="sr-only">Cart icon</span>
+                <NavLink to="/cart">
                 <ion-icon
                   name="cart-outline"
                   role="img"
                   className="md hydrated"></ion-icon>
+                </NavLink>
+              
                 <span className=" text-white text-sm ">
                   {numberOfProductsInCart}
                 </span>

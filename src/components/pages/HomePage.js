@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/modules/productsSlice";
 import { Link } from "react-router-dom";
+import { addSingelProductToCart } from "../../store/modules/cartSlice";
+
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -53,10 +55,17 @@ const HomePage = () => {
                   </p>
                 </div>
               </div>
-              <div className="mt-6">
+              <div className="mt-6 flex justify-center ">
                 <Link to={`product/${product.id}`}>
-                  <div className="relative flex items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-green-300">
+                  <div className="relative m-2 flex items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-green-300">
                     See More
+                  </div>
+                </Link>
+                <Link to={`/cart`}>
+                  <div 
+                  onClick={()=> dispatch(addSingelProductToCart(product))}
+                   className="relative m-2 flex items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-green-300">
+                    Buy Now
                   </div>
                 </Link>
               </div>

@@ -13,12 +13,7 @@ reducers: {
 }
 })
 
-
-
 export default loaderSlice.reducer;
-// const {actions, reducer} = loaderSlice;
-// export default reducer;
-
 const {SET_LOADER} = loaderSlice.actions;
 
 export const setLoadingState = (loadingStatus) => (dispatch)=> {
