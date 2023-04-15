@@ -16,6 +16,9 @@ const productsSlice = createSlice({
     SET_SINGLE_PRODUCT: (state, action) => {
       state.productDetails = action.payload;
     },
+    SET_ERROR:( state,action) => {
+      state.isError = action.payload
+    }
   },
 });
 export default productsSlice.reducer;
@@ -27,8 +30,6 @@ export const fetchProducts = () => async (dispatch) => {
   try {
     const response = await fetch("https://api.noroff.dev/api/v1/online-shop");
     const data = await response.json();
-    console.log(data);
-
     dispatch(SET_PRODUCTS(data));
     dispatch(setLoadingState(false));
   } catch (e) {
@@ -41,6 +42,7 @@ const {SET_SINGLE_PRODUCT} = productsSlice.actions;
 
 export const fetchSingleProductById = (id) => async (dispatch) => {
   dispatch(setLoadingState(true));
+  let response
   try {
    const response = await fetch(`https://api.noroff.dev/api/v1/online-shop/${id}`)
    const productDetailsData = await response.json();
@@ -50,4 +52,17 @@ export const fetchSingleProductById = (id) => async (dispatch) => {
   } catch(e) {
    console.log("Error sad :(", e.message);
   }
+  if(response.ok){
+    console.log("the response is correct");
+    dispatch(handlerErrorResponse(false))
+  } else{
+    console.log("the response is not ok");
+    dispatch(handlerErrorResponse(true))
+  }
 };
+
+const {SET_ERROR}  = productsSlice.reducer
+
+export const handlerErrorResponse = (ApiResponseStatus) => (dispatch) => {
+  dispatch(SET_ERROR(ApiResponseStatus))
+}
