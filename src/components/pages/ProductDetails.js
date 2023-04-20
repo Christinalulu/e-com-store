@@ -4,24 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProductById } from "../../store/modules/productsSlice";
 import { addSingelProductToCart } from "../../store/modules/cartSlice";
 
-
 const ProductDetails = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
    const {productDetails, isError} = useSelector(state => state.productsSlice)
-
    
-
   useEffect(() => {
     dispatch(fetchSingleProductById(id));
   }, [dispatch, id]);
-
 
   return (
     <>
     {productDetails && !isError && <div className="bg-white">
       <div className="pb-16 pt-6 sm:pb-24">
-
         <nav
           aria-label="Breadcrumb"
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -48,7 +43,6 @@ const ProductDetails = () => {
               <div className="flex items-center">
                 <div className="mr-4 text-sm font-medium text-gray-900">
                   {productDetails.tags}
-              
                 </div>
                 <svg
                   viewBox="0 0 6 20"
@@ -70,7 +64,6 @@ const ProductDetails = () => {
             </li>
           </div>
         </nav>
-
         <div className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
             <div className="lg:col-span-5 lg:col-start-8">
@@ -78,15 +71,11 @@ const ProductDetails = () => {
                 <h1 className="text-xl font-medium text-gray-900">
                 {productDetails.title}
                 </h1>
-               
               </div>
-             
               <div className="mt-4">
               <p className="text-xl font-medium text-gray-600">NOK {productDetails.price} </p>
               </div>
             </div>
-
-            {/* <!-- Image gallery --> */}
             <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
               <h2 className="sr-only">Images</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
@@ -94,13 +83,10 @@ const ProductDetails = () => {
                   src={productDetails.imageUrl}
                   alt={productDetails.tags}
                   className="lg:col-span-2 lg:row-span-2 rounded-lg"
-                />          
+                  loading="lazy"
+                />
               </div>
             </div>
-
-             {/* <!-- Product details --> */}
-            
-
             <div className="mt-8 lg:col-span-5">
             <div>
                 <h2 className="text-sm font-medium text-gray-900">Description</h2>
@@ -109,29 +95,17 @@ const ProductDetails = () => {
                   {productDetails.description}
                   </p> 
                 </div>
-               
                 <div className=" mt-8 flex justify-between ">
                 <h3 className="">Discount</h3>
                 <p className=" text-red-500">Buy Now  For {productDetails.discountedPrice}kr</p>
                 </div>
-                
               </div>
-
-              
                 <button
                   type="submit"
                   className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-lime-400 px-8 py-3 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   onClick={()=> dispatch(addSingelProductToCart(productDetails))}>
                   Add to cart
                 </button>
-            
-             {/* //TODO:  Add an review starts */}
-              <div className="mt-8 border-t border-gray-200 pt-8">
-                <h2 className="text-sm font-medium text-gray-900">
-                 Reviews
-                </h2>
-              </div>
-
             </div>
           </div>
         </div>
