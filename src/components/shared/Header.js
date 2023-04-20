@@ -99,16 +99,16 @@ const Header = () => {
           </div>
         </div>
         <div id="mobile-menu" className={`${open ? "block" : "hidden"}`}>
-          <div className="space-y-1 px-2 pb-3 pt-2">
+          <div className="space-y-1 px-2 pb-3 pt-2 lg:hidden ">
             <NavLink to="/"
               className="text-white hover:bg-green-500 block rounded-md py-2 px-3 text-base font-medium" 
               aria-current="page">
               Home
             </NavLink>
-            <NavLink to="/cart" className="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
+            <NavLink to="/contact_us" className="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
               Contact
             </NavLink>
-            <NavLink to="/contact_us" className="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
+            <NavLink to="/cart" className="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
               My Products
             </NavLink>
           </div>

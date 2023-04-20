@@ -6,7 +6,6 @@ import ContactPage from "../components/pages/ContactPage"
 import PageNotFound from "../components/pages/PageNotFound";
 
 function Router(){
-  
    return(
       <>
       <Routes>
@@ -15,7 +14,6 @@ function Router(){
          <Route path="/product/:id" element={<ProductDetails/>} />
          <Route path="/cart" element={<CheckOutPage/>} />
          <Route path="/contact_us" element={<ContactPage/>} />
-
 
          <Route path="*" element={<PageNotFound/>} />
    
